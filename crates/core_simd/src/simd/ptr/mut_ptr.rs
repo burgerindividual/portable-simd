@@ -151,13 +151,13 @@ where
     #[inline]
     fn expose_addr(self) -> Self::Usize {
         // Safety: `self` is a pointer vector
-        unsafe { core::intrinsics::simd::simd_expose_addr(self) }
+        unsafe { core::intrinsics::simd::simd_expose_provenance(self) }
     }
 
     #[inline]
     fn from_exposed_addr(addr: Self::Usize) -> Self {
         // Safety: `self` is a pointer vector
-        unsafe { core::intrinsics::simd::simd_from_exposed_addr(addr) }
+        unsafe { core::intrinsics::simd::simd_with_exposed_provenance(addr) }
     }
 
     #[inline]
