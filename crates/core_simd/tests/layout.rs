@@ -5,10 +5,16 @@ macro_rules! layout_tests {
         $(
         mod $mod {
             test_helpers::test_lanes! {
-                fn no_padding<const LANES: usize>() {
+                fn padding<const LANES: usize>() {
+                    let expected = (core::mem::size_of::<$ty>() * LANES).next_power_of_two();
                     assert_eq!(
                         core::mem::size_of::<core_simd::simd::Simd::<$ty, LANES>>(),
-                        core::mem::size_of::<[$ty; LANES]>(),
+                        expected,
+                    );
+
+                    assert_eq!(
+                        core::mem::align_of::<core_simd::simd::Simd::<$ty, LANES>>(),
+                        expected,
                     );
                 }
             }
