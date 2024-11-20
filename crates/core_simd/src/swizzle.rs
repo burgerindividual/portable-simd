@@ -103,7 +103,7 @@ pub trait Swizzle<const N: usize> {
                         output[i] = index as u32;
                         i += 1;
                     }
-                    output
+                    Simd::from_array(output)
                 },
             )
         }
@@ -139,7 +139,7 @@ pub trait Swizzle<const N: usize> {
                         output[i] = index as u32;
                         i += 1;
                     }
-                    output
+                    Simd::from_array(output)
                 },
             )
         }
